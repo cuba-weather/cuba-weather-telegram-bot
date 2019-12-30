@@ -1,0 +1,2 @@
+pyTelegramBotApi
+cuba-weather-correaleyval
