@@ -10,7 +10,7 @@ import telebot
 bot = telebot.TeleBot(config.token)
 server = Flask(__name__)
 
-welcome_msg = "Hola {0} enviame un municipio de Cuba para conocer su estado meteorológico"
+welcome_msg = "Hola {0} enviame el nombre de una localidad de Cuba para conocer su estado meteorológico"
 
 res_msg ="""
 <strong>{0}</strong>\n
