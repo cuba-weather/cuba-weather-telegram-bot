@@ -1,11 +1,14 @@
 from cuba_weather import weather
 from cuba_weather import finder
 
+from flask import Flask, request
+
 import config
 
 import telebot
 
 bot = telebot.TeleBot(config.token)
+server = Flask(__name__)
 
 welcome_msg = "Hola {0} enviame un municipio de Cuba para conocer su estado meteorológico"
 
@@ -25,7 +28,7 @@ def send_welcome(message):
     )
 
 @bot.message_handler(content_types=['text'])
-def echo_all(message):
+def send_response(message):
     try:
         loc = finder.get_location(message.text)
         c = weather.RCApiClient(loc)
@@ -39,4 +42,18 @@ def echo_all(message):
     except Exception as e:
         bot.reply_to(message, e)
 
-bot.polling()
+@server.route('/' + config.token, methods=['POST'])
+def getMessage():
+    bot.process_new_updates(
+        [telebot.types.Update.de_json(
+            request.stream.read().decode("utf-8")
+        )]
+    )
+
+    return "!", 200
+
+@server.route('/')
+def webhook():
+    bot.remove_webhook()
+    bot.set_webhook(url='https://cuba-weather.herokuapp.com/' + config.token)
+    return "!", 200
