@@ -1,2 +1,2 @@
 pyTelegramBotApi
-cuba-weather-correaleyval
+cuba-weather
