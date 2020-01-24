@@ -4,7 +4,7 @@ import telebot
 
 from cuba_weather import RCApiClient
 
-#bot = telebot.TeleBot(config.token)
+bot = telebot.TeleBot(config.token)
 
 api = RCApiClient()
 
