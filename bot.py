@@ -4,6 +4,10 @@ import telebot
 
 from cuba_weather import RCApiClient
 
+from flask import Flask, request
+
+server = Flask(__name__)
+
 bot = telebot.TeleBot(config.token)
 
 api = RCApiClient()
@@ -92,6 +96,22 @@ def query_text(inline_query):
         bot.answer_inline_query(inline_query.id, [r])
     except Exception as e:
         print(e)
+
+@server.route('/' + config.token, methods=['POST'])
+def getMessage():
+    bot.process_new_updates(
+        [telebot.types.Update.de_json(
+            request.stream.read().decode("utf-8")
+        )]
+    )
+
+    return "!", 200
+
+@server.route('/')
+def webhook():
+    bot.remove_webhook()
+    bot.set_webhook(url='https://cuba-weather.herokuapp.com/' + config.token)
+    return "!", 200
 
 import time
 import sys
