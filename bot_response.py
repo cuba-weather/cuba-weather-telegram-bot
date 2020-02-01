@@ -13,7 +13,7 @@ def weather_message(weather):
     <strong>💧 Humedad:</strong> {}%\n
     <strong>Presión atmosférica:</strong> {} hpa\n\n
     <strong>🌬 Vientos: </strong>\n
-    <strong>Velocidad: </strog>{} Km/h\n
+    <strong>Velocidad: </strong>{} Km/h\n
     <strong>Direccion: </strong>{}\n
     """
 
