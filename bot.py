@@ -39,7 +39,7 @@ def query_text(inline_query):
     try:
         r = types.InlineQueryResultArticle(
             '1',
-            weather.city_name,
+            weather.cityName,
             types.InputTextMessageContent(
                 weather_message(weather),
                 parse_mode='HTML'

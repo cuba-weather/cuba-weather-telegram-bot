@@ -2,7 +2,9 @@ import config
 
 from flask import Flask, request
 
-from .bot import bot
+from bot import bot
+
+import telebot
 
 server = Flask(__name__)
 
