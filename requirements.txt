@@ -1,4 +1,4 @@
 pyTelegramBotApi
-git+https://github.com/cuba-weather/cuba-weather-python
+cuba-weather-redcuba
 flask
 gunicorn
