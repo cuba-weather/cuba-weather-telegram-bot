@@ -1,5 +1,5 @@
 def welcome_message(name):
-    welcome_msg = "Hola {} enviame el nombre de una localidad de Cuba para conocer su estado meteorológico"
+    welcome_msg = "Hola {} enviame el nombre de un municipio de Cuba para conocer su estado meteorológico"
 
     return welcome_msg.format(name)
 
