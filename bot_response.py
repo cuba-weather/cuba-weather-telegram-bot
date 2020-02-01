@@ -6,15 +6,13 @@ def welcome_message(name):
 
 def weather_message(weather):
     res_msg ="""
-    <strong>🌐 {}</strong>\n
+    🌐 {}\n
     📅 {}\n
-    <strong>{}</strong>\n
-    <strong>🌡 Temperatura:</strong> {}°C\n
-    <strong>💧 Humedad:</strong> {}%\n
-    <strong>Presión atmosférica:</strong> {} hpa\n\n
-    <strong>🌬 Vientos: </strong>\n
-    <strong>Velocidad: </strong>{} Km/h\n
-    <strong>Direccion: </strong>{}\n
+    {}\n
+    🌡 {}°C\n
+    💧 {}%\n
+    PA: {} hpa\n
+    🌬 {} Km/h {}\n
     """
 
     emoji_dict = {
