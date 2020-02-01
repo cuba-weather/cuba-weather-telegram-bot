@@ -4,7 +4,7 @@ import telebot
 
 from cuba_weather_redcuba import CubaWeatherRedCuba
 
-from .bot_response import welcome_message, weather_message
+import bot_response as br
 
 bot = telebot.TeleBot(config.token)
 
@@ -14,20 +14,14 @@ api = CubaWeatherRedCuba()
 def send_welcome(message):
     bot.reply_to(
         message,
-        welcome_message(message.from_user.first_name)
+        br.welcome_message(message.from_user.first_name)
     )
 
 @bot.message_handler(content_types=['text'])
 def send_response(message):
     weather = api.get(message.text)
 
-    gemoji = defaul_emoji
-
-    for k in emoji_dict.keys():
-        if k in weather.descriptionWeather.lower():
-            gemoji = emoji_dict[k]
-
-    bot.reply_to(message, weather_message(weather), parse_mode='HTML')
+    bot.reply_to(message, br.weather_message(weather), parse_mode='HTML')
 
 ## INLINE
 from telebot import types
@@ -41,7 +35,7 @@ def query_text(inline_query):
             '1',
             weather.cityName,
             types.InputTextMessageContent(
-                weather_message(weather),
+                br.weather_message(weather),
                 parse_mode='HTML'
             )
         )

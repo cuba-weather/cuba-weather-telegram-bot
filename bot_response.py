@@ -18,10 +18,10 @@ def weather_message(weather):
     """
 
     emoji_dict = {
-        'despejado': '☀️'
-        'ligera': '🌦'
-        'nublado': '🌥'
-        'intensa': '🌨'
+        'despejado': '☀️',
+        'ligera': '🌦',
+        'nublado': '🌥',
+        'intensa': '🌨',
     }
 
     gemoji = '⛅️'
