@@ -21,7 +21,7 @@ from cuba_weather_insmet import CubaWeatherInsMet
 
 @bot.message_handler(commands=['forecast'])
 def send_forecast(message):
-    _, location = message.split(' ')
+    _, location = message.text.split(' ')
 
     print(location)
 
@@ -30,8 +30,8 @@ def send_forecast(message):
     weath = api.get(location)
 
     bot.reply_to(
-        str(weath),
-        message.text
+        message,
+        str(weath)
     )
 
 @bot.message_handler(content_types=['text'])
