@@ -5,7 +5,7 @@ def welcome_message(name):
 
 
 def weather_message(weather):
-    res_msg ="🌐 {}\n📅 {}\n{}\n🌡 {}°C\n💧 {}%\nPA: {} hpa\n🌬 {} Km/h {}\n"
+    res_msg ="🌐 {}\n📅 {}\n{}\n🌡 {}°C\n💧 {}%\n⏱: {} hpa\n🌬 {} Km/h {}\n"
 
     emoji_dict = {
         'despejado': '☀️',
