@@ -17,6 +17,13 @@ def send_welcome(message):
         br.welcome_message(message.from_user.first_name)
     )
 
+@bot.message_handler(commands=['forecast'])
+def send_forecast(message):
+    bot.reply_to(
+        message,
+        message.text
+    )
+
 @bot.message_handler(content_types=['text'])
 def send_response(message):
     weather = api.get(message.text)
