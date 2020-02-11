@@ -17,10 +17,20 @@ def send_welcome(message):
         br.welcome_message(message.from_user.first_name)
     )
 
+from cuba_weather_insmet import CubaWeatherInsMet
+
 @bot.message_handler(commands=['forecast'])
 def send_forecast(message):
+    _, location = message.split(' ')
+
+    print(location)
+
+    api = CubaWeatherInsMet()
+
+    weath = api.get(location)
+
     bot.reply_to(
-        message,
+        str(weath),
         message.text
     )
 
