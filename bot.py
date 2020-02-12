@@ -22,9 +22,14 @@ import os
 
 @bot.message_handler(commands=['forecast'])
 def send_forecast(message):
-    _, location = message.text.split(' ')
-
-    print(location)
+    try:
+        _, location = message.text.split(' ')
+    except:
+        bot.reply_to(
+            message,
+            'Enviame /forecast localidad , ej: /forecast Santiago'
+        )
+        return
 
     API_KEY = os.environ['OWM_API']
 
@@ -34,7 +39,7 @@ def send_forecast(message):
 
     bot.reply_to(
         message,
-        str(weath)
+        br.forecast_message(weath)
     )
 
 @bot.message_handler(content_types=['text'])

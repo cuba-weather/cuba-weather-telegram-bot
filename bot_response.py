@@ -31,4 +31,20 @@ def weather_message(weather):
         weather.windDirectionDescription,
     )
 
-    
+from datetime import datetime
+
+def forecast_message(weather):
+    res_msg ="🌐 {}\n"
+
+    day_msg = "\n📅 {}\n☁️ {}\n🌡➖ {}°C\n🌡➕ {}°C\n"
+
+    result = res_msg.format(weather.cityName)
+
+    for w in weather.days:
+        result += day_msg.format(
+            datetime.strftime(w.day, "%d-%m-%Y"),
+            w.tmin,
+            w.tmax
+        )
+
+    return result
