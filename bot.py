@@ -20,11 +20,21 @@ def send_welcome(message):
 from cuba_weather_owm import CubaWeatherOWM
 import os
 
+def extract_arg(text):
+    location = ''
+
+    text = text.split()[1:]
+
+    for word in text:
+        location += word + ' '
+
+    return location
+
 @bot.message_handler(commands=['forecast'])
 def send_forecast(message):
-    try:
-        _, location = message.text.split(' ')
-    except:
+    location = extract_arg(message.text)
+
+    if location == '':
         bot.reply_to(
             message,
             'Enviame /forecast localidad , ej: /forecast Santiago'
