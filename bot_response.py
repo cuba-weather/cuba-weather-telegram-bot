@@ -43,8 +43,9 @@ def forecast_message(weather):
     for w in weather.days:
         result += day_msg.format(
             datetime.strftime(w.day, "%d-%m-%Y"),
+            w.description,
             w.tmin,
-            w.tmax
+            w.tmax,
         )
 
     return result
