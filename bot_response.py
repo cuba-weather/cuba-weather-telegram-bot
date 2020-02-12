@@ -31,19 +31,35 @@ def weather_message(weather):
         weather.windDirectionDescription,
     )
 
+def get_gemoji(description):
+    emoji_dict = {
+        'despejado': '☀️',
+        'ligera': '🌦',
+        'nublado': '🌥',
+        'intensa': '🌨',
+    }
+
+    gemoji = '☁️'
+
+    for k in emoji_dict.keys():
+        if k in description:
+            gemoji = emoji_dict[k]
+    
+    return gemoji
+
 from datetime import datetime
 
 def forecast_message(weather):
     res_msg ="🌐 {}\n"
 
-    day_msg = "\n📅 {}\n☁️ {}\n🌡➖ {}°C\n🌡➕ {}°C\n"
+    day_msg = "\n📅 {}\n{}\n🌡min. {}°C\n🌡max. {}°C\n"
 
     result = res_msg.format(weather.cityName)
 
     for w in weather.days:
         result += day_msg.format(
             datetime.strftime(w.day, "%d-%m-%Y"),
-            w.description,
+            get_gemoji(w.description) + ' ' + w.description,
             w.tmin,
             w.tmax,
         )
