@@ -17,6 +17,31 @@ def send_welcome(message):
         br.welcome_message(message.from_user.first_name)
     )
 
+from cuba_weather_owm import CubaWeatherOWM
+import os
+
+@bot.message_handler(commands=['forecast'])
+def send_forecast(message):
+    try:
+        _, location = message.text.split(' ')
+    except:
+        bot.reply_to(
+            message,
+            'Enviame /forecast localidad , ej: /forecast Santiago'
+        )
+        return
+
+    API_KEY = os.environ['OWM_API']
+
+    api = CubaWeatherOWM(API_KEY)
+
+    weath = api.get(location)
+
+    bot.reply_to(
+        message,
+        br.forecast_message(weath)
+    )
+
 @bot.message_handler(content_types=['text'])
 def send_response(message):
     weather = api.get(message.text)

@@ -1,11 +1,11 @@
 def welcome_message(name):
-    welcome_msg = "Hola {} enviame el nombre de una localidad de Cuba para conocer su estado meteorológico"
+    welcome_msg = "Hola {} enviame el nombre de un municipio de Cuba para conocer su estado meteorológico"
 
     return welcome_msg.format(name)
 
 
 def weather_message(weather):
-    res_msg ="🌐 {}\n📅 {}\n{}\n🌡 {}°C\n💧 {}%\nPA: {} hpa\n🌬 {} Km/h {}\n"
+    res_msg ="🌐 {}\n📅 {}\n{}\n🌡 {}°C\n💧 {}%\n⏱ {} hpa\n🌬 {} Km/h {}\n"
 
     emoji_dict = {
         'despejado': '☀️',
@@ -31,4 +31,21 @@ def weather_message(weather):
         weather.windDirectionDescription,
     )
 
-    
+from datetime import datetime
+
+def forecast_message(weather):
+    res_msg ="🌐 {}\n"
+
+    day_msg = "\n📅 {}\n☁️ {}\n🌡➖ {}°C\n🌡➕ {}°C\n"
+
+    result = res_msg.format(weather.cityName)
+
+    for w in weather.days:
+        result += day_msg.format(
+            datetime.strftime(w.day, "%d-%m-%Y"),
+            w.description,
+            w.tmin,
+            w.tmax,
+        )
+
+    return result
