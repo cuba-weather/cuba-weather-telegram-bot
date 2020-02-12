@@ -1,5 +1,5 @@
 pyTelegramBotApi
 cuba-weather-redcuba
-cuba-weather-insmet
+cuba-weather-owm
 flask
 gunicorn

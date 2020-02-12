@@ -17,7 +17,8 @@ def send_welcome(message):
         br.welcome_message(message.from_user.first_name)
     )
 
-from cuba_weather_insmet import CubaWeatherInsMet
+from cuba_weather_owm import CubaWeatherOWM
+import os
 
 @bot.message_handler(commands=['forecast'])
 def send_forecast(message):
@@ -25,7 +26,9 @@ def send_forecast(message):
 
     print(location)
 
-    api = CubaWeatherInsMet()
+    API_KEY = os.environ['OWM_API']
+
+    api = CubaWeatherOWM(API_KEY)
 
     weath = api.get(location)
 
