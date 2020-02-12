@@ -1,24 +1,33 @@
+from datetime import datetime
+
 def welcome_message(name):
     welcome_msg = "Hola {} enviame el nombre de un municipio de Cuba para conocer su estado meteorológico"
 
     return welcome_msg.format(name)
 
-
-def weather_message(weather):
-    res_msg ="🌐 {}\n📅 {}\n{}\n🌡 {}°C\n💧 {}%\n⏱ {} hpa\n🌬 {} Km/h {}\n"
-
+def get_gemoji(description):
     emoji_dict = {
         'despejado': '☀️',
         'ligera': '🌦',
         'nublado': '🌥',
         'intensa': '🌨',
+        'eléctricas': '🌩',
+        'tormentas': '🌩'
     }
 
-    gemoji = '⛅️'
+    gemoji = '☁️'
 
     for k in emoji_dict.keys():
-        if k in weather.descriptionWeather.lower():
+        if k in description:
             gemoji = emoji_dict[k]
+    
+    return gemoji
+
+
+def weather_message(weather):
+    res_msg ="🌐 {}\n📅 {}\n{}\n🌡 {}°C\n💧 {}%\n⏱ {} hpa\n🌬 {} Km/h {}\n"
+
+    gemoji = get_gemoji(weather.descriptionWeather)
 
     return res_msg.format(
         weather.cityName,
@@ -30,24 +39,6 @@ def weather_message(weather):
         weather.windVelocity,
         weather.windDirectionDescription,
     )
-
-def get_gemoji(description):
-    emoji_dict = {
-        'despejado': '☀️',
-        'ligera': '🌦',
-        'nublado': '🌥',
-        'intensa': '🌨',
-    }
-
-    gemoji = '☁️'
-
-    for k in emoji_dict.keys():
-        if k in description:
-            gemoji = emoji_dict[k]
-    
-    return gemoji
-
-from datetime import datetime
 
 def forecast_message(weather):
     res_msg ="🌐 {}\n"
