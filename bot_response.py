@@ -9,6 +9,7 @@ def get_gemoji(description):
     emoji_dict = {
         'claro': '☀️',
         'despejado': '☀️',
+        'moderada': '🌦',
         'ligera': '🌦',
         'nublado': '🌥',
         'intensa': '🌨',
@@ -48,7 +49,8 @@ def forecast_message(weather):
 
     result = res_msg.format(weather.cityName)
 
-    for w in weather.days:
+    for i in range(1, len(weather.days)):
+        w = weather.days[i]
         result += day_msg.format(
             datetime.strftime(w.day, "%d-%m-%Y"),
             get_gemoji(w.description) + ' ' + w.description,
