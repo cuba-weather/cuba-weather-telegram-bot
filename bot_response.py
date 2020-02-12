@@ -7,6 +7,7 @@ def welcome_message(name):
 
 def get_gemoji(description):
     emoji_dict = {
+        'claro': '☀️',
         'despejado': '☀️',
         'ligera': '🌦',
         'nublado': '🌥',
