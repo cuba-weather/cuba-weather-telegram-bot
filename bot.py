@@ -30,14 +30,14 @@ def extract_arg(text):
 
     return location
 
-@bot.message_handler(commands=['forecast'])
+@bot.message_handler(commands=['forecast', 'fc'])
 def send_forecast(message):
     location = extract_arg(message.text)
 
     if location == '':
         bot.reply_to(
             message,
-            'Enviame /forecast localidad , ej: /forecast Santiago'
+            'Enviame /forecast localidad , ej: /forecast Santiago\nTambien funciona el atajo /fc localidad'
         )
         return
 
